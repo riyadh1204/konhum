@@ -1,0 +1,69 @@
+<br>
+
+<ion-content padding>
+  <ion-avatar *ngIf=!this.data>
+    <ion-skeleton-text animated></ion-skeleton-text>
+  </ion-avatar>
+  <ion-avatar *ngIf=this.data>
+    <img src="{{this.data}}">
+  </ion-avatar>
+
+  <div  *ngIf=!this.nama style="text-align: center !important;" (click)="ubahData()">
+  <ion-row>
+    <ion-col size="4">
+
+    </ion-col>
+    <ion-col>
+        <ion-skeleton-text animated >
+            <ion-icon style="color:turquoise" name="create" ></ion-icon>
+        </ion-skeleton-text>
+      </ion-col>
+      <ion-col size="4">
+      
+        </ion-col>
+  </ion-row>
+       
+   
+  </div>
+
+    <div *ngIf=this.nama style="text-align: center;" (click)="ubahData()">
+    <p >
+        {{this.nama}}
+         <ion-icon style="color:turquoise" name="create" ></ion-icon>
+       </p>
+  </div>
+
+  <ion-list >
+    <ion-item (click)="riwayat()">
+      <label>Riwayat Transaksi</label>
+      <ion-button  fill="clear" slot="end">
+        <ion-icon style="color:turquoise" name="play"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item (click)="kontak()">
+      <label>Kontak Kami</label>
+      <ion-button  fill="clear" slot="end">
+        <ion-icon style="color:turquoise" name="play"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item (click)="syarat()">
+      <label>Syarat & Ketentuan</label>
+      <ion-button  fill="clear" slot="end">
+        <ion-icon style="color:turquoise" name="play"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item (click)="tentang()">
+      <label >Tentang Kami</label>
+      <ion-button  fill="clear" slot="end">
+        <ion-icon style="color:turquoise" name="play"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item lines="none">
+    </ion-item>
+
+    <ion-item (click)="logout()" lines="none">
+      <label style="color:red;">Keluar</label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header transparent no-border>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+    <p style="font-size:11pt !important;font-weight: bold;">
+      Tentang Kami
+    </p>
+  </ion-buttons>
+</ion-header>
+
+<ion-content padding>
+<br>
+
+    <img src="assets/unnamed.png">
+<ion-list *ngIf="!this.data">
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+</ion-list>
+<div *ngIf="this.data">
+  <div *ngFor="let item of this.data.tentangKami">
+    <div [innerHTML]="item.isi"></div>
+  </div>
+</div>
+</ion-content>

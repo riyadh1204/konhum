@@ -1,0 +1,321 @@
+<ion-header transparent no-border>
+    
+    <ion-row *ngIf="!searchActive">
+      <ion-col size="2">
+          <ion-button expand="block" *ngIf="this.data"  fill="clear" color="medium" size="small" (click)="back()">
+              <ion-icon name="return-left"></ion-icon>
+            </ion-button>     
+      </ion-col>
+      <ion-col size="8">
+        <ion-item lines="none">
+          <img src="assets/unnamed.png">
+        </ion-item>    
+      </ion-col>
+      <ion-col size="2">
+          <ion-button fill="clear"  (click)="searchActive=!searchActive" style="font-weight:bolder !important;color: black;">
+            <ion-icon name="search" ></ion-icon>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+      <ion-row *ngIf="searchActive">
+        <ion-col size="10">
+          <ion-searchbar (ionChange)="searchData($event)" style="padding: 0px"></ion-searchbar>
+        </ion-col>
+        <ion-col size="2" style="align-content: center"> 
+          <ion-button expand="block" fill="clear" color="medium" size="small" (click)="searchActive=!searchActive">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>            
+        </ion-col>
+      </ion-row>
+      
+</ion-header>
+
+<ion-content>
+<div *ngIf="this.data">
+  <div  *ngIf="this.data.length != 0">
+
+      <ion-card *ngFor="let item of this.data" >
+          <ion-item (click)="profilAdvokat(item)" lines="none" >
+              <ion-avatar slot="start">
+                  <img src="{{ this.item.user.foto }}">
+                </ion-avatar>
+                <ion-label> 
+                  <p style="color: black; margin: 0px !important">{{ this.item.user.nama }}</p>
+                  <p style="color: #C8C8C8; margin: 0px !important">{{ this.item.spesialisasi}}</p>
+                  <p style="color: #C8C8C8;">Jakarta</p>
+                </ion-label>
+              </ion-item>    
+            </ion-card> 
+
+  
+  </div>
+
+          <div *ngIf="this.data.length == 0" style="text-align: center;">
+            <p>Advokat tidak ditemukan.</p>
+            </div>
+        </div>
+
+<div *ngIf="!this.data">
+<div class="banner" *ngIf="this.banner">
+<ion-slides pager="true" [options]="slideOpts" style=" --bullet-background: cyan !important;
+    --bullet-background-active: cyan !important;">
+
+  <ion-slide *ngFor="let item of this.banner" (click)="berita(item)">
+    <ion-card style="box-shadow:none !important" >
+      <img src="{{item.banner}}" />
+    </ion-card>
+  </ion-slide>
+
+</ion-slides>
+</div>
+
+<div class="banner" *ngIf="!this.banner">
+  <ion-slides slidesPerView="1" spaceBetween="20" pager class="header-banner" autoplay="3000" loop style=" --bullet-background: cyan !important;
+      --bullet-background-active: cyan !important;">
+
+    <ion-slide>
+      <ion-card style="box-shadow:none !important" >
+        <img src="https://wallpaperplay.com/walls/full/f/d/6/108050.jpg" />
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+</div>
+
+<div padding>
+<ion-card style="border-radius: 10px;">
+
+  <ion-row  style="padding:3% 3% 0 3%;">
+    <ion-col size="9">
+      <ion-label>
+        <h2 style="font-weight: bolder;color:black;">
+            Advokat Terdekat
+          </h2>
+          <p style="font-size: 90%;color: #9E9E9E;">
+              Advokat di sekitar anda
+            </p>
+          </ion-label>
+        </ion-col>
+        <ion-col size="3" style="color: #1EBFCF">
+            <ion-label *ngIf="this.advokatTerdekat != null">
+              <p style="font-weight: bolder;color:#1EBFCF;">
+                  {{this.advokatTerdekat}} Km
+                </p>
+              </ion-label>
+             
+            </ion-col>
+          </ion-row>
+
+
+<div *ngIf="this.advokatTerdekat != null ">
+ <div *ngIf="this.advokatOnline2.advokat.length != 0" >
+  <div *ngFor="let item of this.advokatOnline2.advokat">
+    <div *ngIf="this.getDistanceFromLatLonInKm2(item) == this.advokatTerdekat">
+       
+      <ion-item style="padding:0;padding-top: 0;" (click)="profilAdvokat(item)">
+          <ion-avatar slot="start">
+            <img src="{{item.user.foto}}">
+          </ion-avatar>
+          <ion-label> 
+            <p style="font-size: 12px; color: black; margin: 0px !important">{{item.user.nama}}</p>
+            <p style="font-size: 12px; color: #9E9E9E; margin: 0px !important">{{item.spesialisasi}}</p>
+            <p style="font-size: 12px; color: goldenrod; margin: 0px !important"> Chat Langsung {{item.biaya | currency:'Rp.':true:'1.2-2'}}</p>
+          </ion-label>
+        </ion-item>
+        
+      </div>
+    </div>
+  </div>
+    
+    <ion-item *ngIf="this.advokatOnline2.advokat.length == 0" style="padding:0;padding-top: 0;" >
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label text-wrap>
+          <h3> <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text> </h3>
+          <p text-wrap> <ion-skeleton-text animated></ion-skeleton-text> </p>
+        </ion-label>
+      </ion-item>
+  </div>
+      
+<ion-item *ngIf="!this.advokatOnline2">
+  <ion-avatar slot="start">
+    <ion-skeleton-text animated></ion-skeleton-text>
+  </ion-avatar>
+  
+    <ion-label text-wrap>
+      <h3> <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text> </h3>
+      <p text-wrap> <ion-skeleton-text animated></ion-skeleton-text> </p>
+    </ion-label>
+  </ion-item>
+  
+</ion-card>
+<br>
+
+
+<ion-card style="border-radius: 10px;" (click)="livechat()">
+ 
+<ion-item lines="none">
+<ion-label>
+  <h2 style="font-weight: bolder;color:black;">
+      Live Chat
+    </h2>
+    
+    <div  *ngIf="this.advokatOnline">
+      <p style="font-size: 75%;color: #9E9E9E;" *ngIf="this.advokatOnline.advokat.length != 0">
+          {{this.advokatOnline.advokat.length}} Advokat online saat ini
+        </p>
+        <p style="font-size: 75%;color: #9E9E9E;" *ngIf="this.advokatOnline.advokat.length == 0">
+            Tidak ada advokat online saat ini
+          </p>
+      </div>
+        
+        <p style="font-size: 75%;color: #9E9E9E;" *ngIf="!this.advokatOnline">
+            Tidak ada advokat online saat ini
+        </p>
+        </ion-label>
+     
+            <ion-icon style="color: rgb(202, 202, 202);" name="arrow-dropright" slot="end"></ion-icon>            
+        
+      </ion-item>
+        
+
+      <div  *ngIf="this.advokatOnline">
+
+<div *ngIf="this.advokatOnline3.advokat.length != 0">
+
+<ion-item *ngIf="this.advokatOnline3.advokat.length < 5"   lines="none" style="padding-bottom: 5%"> 
+  <div class="ion-item" *ngFor="let item of this.advokatOnline3.advokat">
+          <ion-avatar class="ion-avatar" (click)="profilAdvokat(item)">
+            <img src="{{item.user.foto}}">
+            <div>
+              <ion-button fill="clear" class="buttonCustom" color="secondary" style="color: white !important;">
+                  
+                </ion-button>
+              </div>
+            </ion-avatar>
+          </div>
+        </ion-item>
+   
+        <ion-item *ngIf="this.advokatOnline3.advokat.length > 5"  lines="none" style="padding-bottom: 5%"> 
+            <div class="ion-item" *ngFor="let item of this.advokatOnline3.advokat">
+              <ion-avatar class="ion-avatar" (click)="profilAdvokat(item)">
+                <img src="{{item.user.foto}}"><div>
+          <ion-button fill="clear" class="buttonCustom" color="secondary" style="color: white !important;">
+              
+            </ion-button>
+          </div>
+        </ion-avatar>
+      </div>
+      <div class="ion-item">
+          <ion-avatar class="ion-avatar" (click)="profilAdvokat(item)">
+            
+              <img src="https://cdn4.iconfinder.com/data/icons/nintendo-switch-pack-1/64/ico-nsw-bttn-plus-512.png">
+                
+            <div>
+     
+      </div>
+    </ion-avatar>
+  </div>
+</ion-item>
+</div>
+
+</div>
+
+<ion-item *ngIf="!this.advokatOnline"  lines="none">
+
+  <div class="ion-item" *ngIf="!this.advokatOnline">
+    <ion-avatar class="ion-avatar">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <div>
+        
+        <ion-button fill="clear" class="buttonCustom" color="secondary" style="color: white !important;">
+            
+          </ion-button>
+        </div>
+      </ion-avatar>
+  </div>
+
+  <div class="ion-item">
+    <ion-avatar class="ion-avatar">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <div>
+        
+        <ion-button fill="clear" class="buttonCustom" color="secondary" style="color: white !important;">
+            
+          </ion-button>
+        </div>
+      </ion-avatar>
+    </div>
+
+    <div class="ion-item">
+      <ion-avatar class="ion-avatar">
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <div>
+          
+          <ion-button fill="clear" class="buttonCustom" color="secondary" style="color: white !important;">
+              
+            </ion-button>
+          </div>
+        </ion-avatar>
+      </div>
+    </ion-item>
+    
+</ion-card>
+
+<hr>
+
+<ion-item lines="none">
+<ion-label>
+  <p style="font-weight: bolder;color:black;">
+      Topik Spesial
+    </p>
+    <p style="font-size: 90%;color: #9E9E9E;">
+        Bahas
+      </p>
+</ion-label>
+<ion-button (click)="artikel()" fill="clear" style="text-transform: none;color: rgb(202, 202, 202);font-size: 75%;" slot="end">
+
+  Selengkapnya <ion-icon name="arrow-dropright"></ion-icon>
+</ion-button>
+
+</ion-item>
+
+
+  <div class="banner2">
+<ion-slides pager="true" [options]="slideOpts2" style=" --bullet-background: cyan !important;
+    --bullet-background-active: cyan !important;">
+
+  <ion-slide *ngFor="let item of this.dataArtikel" (click)="berita(item)">
+    <ion-card >
+     
+        <img src="{{item.artikel}}" />
+            
+      
+        <ion-card-content >
+  <ion-label>
+    <p>
+      
+      {{item.judul}}
+    </p>
+  </ion-label>
+
+    
+         
+        
+       
+            
+           
+         
+    </ion-card-content>
+    </ion-card>
+  </ion-slide>
+
+</ion-slides>
+</div>
+
+    
+<hr>
+</div>
+</div>
+</ion-content>

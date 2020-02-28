@@ -1,0 +1,103 @@
+<ion-header transparent no-border>
+    <ion-row>
+        <ion-col size="3">
+          <ion-buttons >
+            <ion-back-button class="btn_back"></ion-back-button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col size="6" style="text-align: center;">
+          <p style="font-size:11pt !important;font-weight: bold;">
+            PROFIL ADVOKAT
+          </p>
+        </ion-col>
+        <ion-col size="3">
+          </ion-col>
+      </ion-row>
+</ion-header>
+
+<ion-content class="page" padding> 
+    <ion-card  style="  background-color: white" class="card" padding>
+      <ion-item class="item-card" style="height: 80px;">
+        <ion-avatar slot="start">
+          <img src="{{ this.data.user.foto }}">
+        </ion-avatar>
+        <ion-label> 
+          <p style="color: black;">{{ this.data.user.nama }}</p>
+          <p style="color: #C8C8C8; font-size:70%;">ID : {{ this.data.user.id }}</p>
+          <p *ngIf="!this.data.total_ratings" style="color: #C8C8C8;font-size:70%; ">Rating : Belum ada</p>
+          <p *ngIf="this.data.total_ratings" style="color: #C8C8C8;font-size:70%; ">Rating : {{ this.data.total_ratings}}</p>
+        </ion-label>
+      </ion-item> 
+
+      <ion-list class="item-card" > 
+
+              <ion-item>
+                <ion-label style="color: #C8C8C8;font-size:75%" position="stacked">Spesialisasi</ion-label>
+                <ion-input style="font-size:75%" value="{{ this.data.spesialisasi }}" readonly *ngIf="this.data.spesialisasi != null"></ion-input>
+                <ion-input style="font-size:85%" value="Tidak Ada" readonly *ngIf="this.data.spesialisasi == null"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label style="color: #C8C8C8;font-size:75%" position="stacked">Pengalaman</ion-label>
+                  <ion-input style="font-size:75%" value="{{ this.data.lama_pengalaman }}" readonly *ngIf="this.data.lama_pengalaman != null"></ion-input>
+                  <ion-input style="font-size:85%" value="Tidak Ada" readonly *ngIf="this.data.lama_pengalaman == null"></ion-input>
+                </ion-item>
+      
+                
+                <ion-item>
+                    <ion-label style="color: #C8C8C8;font-size:75%" position="stacked">Bahasa</ion-label>
+                    <ion-input style="font-size:75%" value="{{ this.data.bahasa }}" readonly *ngIf="this.data.bahasa != null"></ion-input>
+                    <ion-input style="font-size:85%" value="Tidak Ada" readonly *ngIf="this.data.bahasa == null"></ion-input>
+                  </ion-item>
+      
+                  
+                  <ion-item>
+                      <ion-label style="color: #C8C8C8;font-size:75%" position="stacked">Wilayah</ion-label>
+                      <ion-input style="font-size:75%" value="{{ this.data.wilayah }}" readonly *ngIf="this.data.wilayah != null"></ion-input>
+                      <ion-input style="font-size:85%" value="Tidak Ada" readonly *ngIf="this.data.wilayah == null"></ion-input>
+                    </ion-item>
+      
+                    
+                    <ion-item>
+                        <ion-label style="color: #C8C8C8;font-size:75%" position="stacked">Pendidikan</ion-label>
+                        <ion-input style="font-size:75%" value="{{ this.data.pendidikan }}" readonly *ngIf="this.data.pendidikan != null"></ion-input>
+                        <ion-input style="font-size:85%" value="Tidak Ada" readonly *ngIf="this.data.pendidikan == null"></ion-input>
+                      </ion-item>
+      
+                      
+                      <ion-item>
+                          <ion-label style="color: #C8C8C8;font-size:75%" position="stacked">Biaya</ion-label>
+                          <ion-input style="font-size:75%" value="{{ this.data.biaya | currency:'Rp.':true:'1.2-2' }}" readonly *ngIf="this.data.biaya != null"></ion-input>
+                          <ion-input style="font-size:85%" value="Tidak Ada" readonly *ngIf="this.data.biaya == null"></ion-input>
+                        </ion-item>
+      
+      </ion-list>
+    </ion-card>
+
+<div padding *ngIf="this.status == 0">
+  <ion-button (click)="gotoPay()" disabled class="button" shape="round" expand="full" style="font-size: 12px;">Mohon Tunggu</ion-button>
+</div>
+
+<div padding *ngIf="this.status == 1">
+  <ion-button (click)="gotoPay()" class="button" shape="round" expand="full" style="font-size: 12px;">Order Konsultasi</ion-button>
+</div>
+
+<div padding *ngIf="this.status == 2">
+    <p style="text-align: center;color:cyan;font-size: 75%">Pembayaran Sedang Diproses</p>
+  <ion-button (click)="gotoPay()" disabled class="button" shape="round" expand="full" style="font-size: 12px;">Mulai Chat</ion-button>
+</div>
+<div padding *ngIf="this.status == 3">
+  <p style="text-align: center;color:cyan;font-size: 75%">Pembayaran Berhasil</p>
+<ion-button (click)="chat()" class="button" shape="round" expand="full" style="font-size: 12px;">Mulai Chat</ion-button>
+</div>
+<div padding *ngIf="this.status == 4">
+    <p style="text-align: center;color:red;font-size: 75%">Pembayaran Gagal, Coba lagi</p>
+    <ion-button class="button2"  (click)="gotoPay()" shape="round" expand="full" style="font-size: 12px;">Order Konsultasi</ion-button>
+</div>
+<!-- <div padding *ngIf="this.status == 2">
+    <ion-button (click)="chat()" class="button" shape="round" expand="full" style="font-size: 12px;">MULAI CHAT</ion-button>
+  </div>
+      -->
+ 
+
+</ion-content>

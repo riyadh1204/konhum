@@ -1,0 +1,118 @@
+<ion-header transparent no-border>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <p style="font-size:11pt !important;font-weight: bold;">
+        Riwayat Transaksi
+      </p>
+    </ion-buttons>
+  </ion-header>
+
+<ion-content>
+
+<ion-list *ngIf="!this.data">
+  <ion-item>
+    <ion-avatar slot="start">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+       <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+       <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+       <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-avatar slot="start">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+       <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+       <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+       <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-avatar slot="start">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+       <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+       <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+       <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-list *ngIf="this.data">
+ <!-- <ion-card *ngFor="let item of this.data.transaksi">
+   <ion-row>
+   <ion-col size="4" >
+      
+
+          <img src="{{item.bukti_pembayaran}}" />
+     
+     
+      </ion-col>
+      <ion-col size="8" >
+       <ion-list padding>
+         <ion-item lines="none">
+          
+           <div *ngIf="item.status == 'approved' ">
+              <p style="color:cyan">Aprroved <ion-icon name="checkmark-circle"></ion-icon></p>
+           </div>
+
+           <div *ngIf="item.status == 'pending' ">
+              <p style="color:lightblue">Pending <ion-icon name="remove-circle"></ion-icon></p>
+           </div>
+
+           <div *ngIf="item.status == 'rejected' ">
+              <p style="color:red">Rejected <ion-icon name="close-circle"></ion-icon></p>
+           </div>
+          </ion-item>
+          <ion-item lines="none">
+              <ion-label position="floating">Nama Advokat :</ion-label>
+              <ion-input value="{{item.advokat.user.nama}}"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+              <ion-label position="floating">Spesialisasi :</ion-label>
+              <ion-input value="{{item.advokat.spesialisasi}}"></ion-input>
+          </ion-item>
+        
+          <div *ngIf="item.updated_at">
+              <ion-item lines="none">
+                  <ion-label position="floating">Waktu disetujui :</ion-label>
+                 <ion-datetime value="{{item.updated_at}}" displayFormat="D MMM YYYY" readonly></ion-datetime>
+           </ion-item>
+          </div>
+      
+        </ion-list>
+        </ion-col>
+    </ion-row>
+ </ion-card> -->
+<ion-item *ngFor="let item of this.data.transaksi" (click)="dataTransaksi(item)">
+
+    <ion-avatar slot="start">
+      <img src="{{item.advokat.user.foto}}">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{item.advokat.user.nama}}</h2>
+     
+          <div *ngIf="item.status == null ">
+              <h3 >Belum Dibayar </h3>
+           </div>
+          
+           <div *ngIf="item.status == 'pending' ">
+              <h3 style="color:lightblue">Pending <ion-icon name="remove-circle"></ion-icon></h3>
+           </div>
+          
+           <div *ngIf="item.status == 'failed' ">
+              <h3 style="color:red">Failed <ion-icon name="close-circle"></ion-icon></h3>
+           </div>
+     
+      <p text-wrap>{{item.advokat.spesialisasi}}</p>
+    </ion-label>
+</ion-item>
+</ion-list>
+
+
+
+</ion-content>

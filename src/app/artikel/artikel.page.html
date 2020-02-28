@@ -1,0 +1,189 @@
+<ion-header transparent no-border>
+    <ion-toolbar>
+      <ion-searchbar (ionChange)="searchData($event)"></ion-searchbar>
+    </ion-toolbar>
+    <div style="background-color:#C8C8C8 !important "  *ngIf="!this.data">
+      <br>
+      <br>
+      <br><br>
+      <br><br><br><br><br><br><br><br>
+      <div style="margin-top: -22%;" padding>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </div>
+    </div>
+  
+  <div *ngIf="this.data">
+    <div style="background-color:transparent !important " (click)="this.beritaBanner()" *ngIf="this.data.length != 0">
+        <img src="{{this.data[0].artikel}}" style="height: 250px; width:100%" *ngIf="this.data">
+        <div style="margin-top: -22%;" padding *ngIf="this.data">
+            <ion-label>
+              <h3 style="color:white">{{this.data[0].judul}}</h3>
+              <p style="color:white">
+                  <ion-icon name="time"></ion-icon> {{this.data[0].updated_at | date:'short' }}
+                </p>
+              </ion-label>
+            </div>
+          </div>
+  
+           <ion-grid style="height: 100%" *ngIf="this.data.length == 0">
+                <ion-row justify-content-center align-items-center style="height: 100%">
+                    <div style="text-align: center;">
+  
+                        <p>Artikel Tidak Ditemukan</p>
+        
+                </div>
+                </ion-row>
+              </ion-grid>
+        </div>
+  
+    
+  </ion-header>
+  <ion-content>
+  
+    <div *ngIf="this.data">
+      <ion-card *ngFor="let item of this.data">
+        <ion-row  (click)="berita(item)">
+          <ion-col size="4" style="padding:0;">
+  
+            <img src="{{item.artikel}}" style="height: 100%; width:100%">
+  
+          </ion-col>
+          <ion-col size="8" style="background-color: #C8C8C8">
+            <ion-label>
+                <h3 style="color:white">{{item.judul}}</h3>
+  
+  
+            </ion-label>
+            <br>
+            <br>
+            <ion-label>
+  
+                <p style="color:white">
+                    <ion-icon name="time"></ion-icon> {{ item.updated_at | date:'short' }}
+                  </p>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+  
+    </div>
+  
+    <div *ngIf="!this.data">
+  
+  
+      <ion-card>
+        <ion-row>
+          <ion-col size="4" style="padding:0;">
+            <button ion-button (click)="dataDiri()"
+              style="height:100%;margin:0;background-color:#E5E5E5;color:#C8C8C8;width:100%;font-size:50pt;">
+              <ion-icon name="pie"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col size="8" style="background-color: #C8C8C8">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </h3>
+  
+  
+            </ion-label>
+            <br>
+            <br>
+            <ion-label>
+  
+  
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      <ion-card>
+        <ion-row>
+          <ion-col size="4" style="padding:0;">
+            <button ion-button (click)="dataDiri()"
+              style="height:100%;margin:0;background-color:#E5E5E5;color:#C8C8C8;width:100%;font-size:50pt;">
+              <ion-icon name="pie"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col size="8" style="background-color: #C8C8C8">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </h3>
+  
+            </ion-label>
+            <br>
+            <br>
+            <ion-label>
+  
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      <ion-card>
+        <ion-row>
+          <ion-col size="4" style="padding:0;">
+            <button ion-button (click)="dataDiri()"
+              style="height:100%;margin:0;background-color:#E5E5E5;color:#C8C8C8;width:100%;font-size:50pt;">
+              <ion-icon name="pie"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col size="8" style="background-color: #C8C8C8">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </h3>
+  
+  
+            </ion-label>
+            <br>
+            <br>
+            <ion-label>
+  
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      <ion-card>
+        <ion-row>
+          <ion-col size="4" style="padding:0;">
+            <button ion-button (click)="dataDiri()"
+              style="height:100%;margin:0;background-color:#E5E5E5;color:#C8C8C8;width:100%;font-size:50pt;">
+              <ion-icon name="pie"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col size="8" style="background-color: #C8C8C8">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </h3>
+  
+            </ion-label>
+            <br>
+            <br>
+            <ion-label>
+  
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </ion-content>

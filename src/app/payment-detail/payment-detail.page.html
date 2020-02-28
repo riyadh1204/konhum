@@ -1,0 +1,117 @@
+<ion-header transparent no-border>
+    <ion-row>
+        <ion-col size="3">
+          <ion-buttons >
+            <ion-back-button class="btn_back"></ion-back-button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col size="6" style="text-align: center;">
+          <p style="font-size:11pt !important;font-weight: bold;">
+              ORDER KONSULTASI
+          </p>
+        </ion-col>
+        <ion-col size="3">
+          </ion-col>
+      </ion-row>
+</ion-header>
+
+<ion-content class="page" padding>
+
+<p style="font-weight:700">Detail Pemesan</p>
+<ion-list  class="item-card" >
+
+  <ion-item lines="none" *ngIf="!this.dataUser">
+
+    <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+      <h2> <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></h2>
+      
+  
+             
+             <p text-wrap></p>
+            </ion-label>
+
+  </ion-item>
+
+  <ion-item lines="none" *ngIf="this.dataUser">
+
+      <ion-avatar slot="start">
+        <img src="{{this.dataUser.user.foto}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ this.dataUser.user.nama}}</h2>
+        
+    
+               
+               <p text-wrap></p>
+              </ion-label>
+  
+    </ion-item>
+</ion-list> 
+
+<p style="font-weight:700">Detail Advokat</p>
+<ion-list class="item-card" >
+    <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img src="{{data.user.foto}}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{data.user.nama}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>
+            <p>Layanan</p>
+            <p> Biaya</p>
+        </ion-label>
+        <ion-label>
+            <p>: Konsultasi</p>
+            <p>:  {{data.biaya | currency:'Rp.':true:'1.2-2'}}</p>
+        </ion-label>
+      </ion-item>
+</ion-list>
+<ion-list class="item-card2" >
+    <ion-item lines="none">
+        <ion-label>
+            <p style="color:white;font-weight: bolder">Total Pembayaran</p>
+        </ion-label>
+        <ion-label>
+            <p style="color:white;font-weight: bolder">:  {{data.biaya | currency:'Rp.':true:'1.2-2'}}</p>
+        </ion-label>
+      </ion-item>
+</ion-list>
+
+<!-- <div padding>
+    <ion-button class="button2" (click)="openWithInAppBrowser('https://www.techiediaries.com')" shape="round" expand="full" style="font-size: 12px;">PEMBAYARAN</ion-button>
+  </div> -->
+
+  <div padding *ngIf="this.status == 0">
+    <ion-button class="button2" disabled  (click)="Check()" shape="round" expand="full" style="font-size: 12px;">Mohon Tunggu</ion-button>
+  </div>
+
+  <div padding *ngIf="this.status == 1">
+    <ion-button class="button2"  (click)="Check()" shape="round" expand="full" style="font-size: 12px;">Pembayaran</ion-button>
+  </div>
+
+  <div padding *ngIf="this.status == 4">
+    <p style="text-align: center;color:cyan;font-size: 75%">Pembayaran Berhasil</p>
+  <ion-button (click)="chat()" class="button" shape="round" expand="full" style="font-size: 12px;">Mulai Chat</ion-button>
+  </div>
+
+  <div padding *ngIf="this.status == 2">
+      <p style="text-align: center;color:red;font-size: 75%;">Pembayaran Sedang Diproses</p>
+    <ion-button class="button2"  disabled (click)="Check()" shape="round" expand="full" style="font-size: 12px;">Pembayaran</ion-button>
+  </div>
+
+  <div padding *ngIf="this.status == 3">
+   
+    <ion-button class="button2"  (click)="Check()" shape="round" expand="full" style="font-size: 12px;">Pembayaran</ion-button>
+  </div>
+
+  <!-- <div padding>
+    <ion-button (click)="openBrowser()">Pembayaran - header</ion-button>
+  </div> -->
+ 
+</ion-content>

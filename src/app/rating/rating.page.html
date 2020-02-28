@@ -1,0 +1,39 @@
+<ion-header transparent no-border>
+    <ion-item text-center lines="none">
+        <ion-label><p style="font-weight: bolder">Rate Advokat Anda</p></ion-label>
+      </ion-item>
+  </ion-header>
+
+<ion-content padding>
+    <ion-avatar>
+        <img src="{{this.data.advokat.user.foto}}" alt="">
+      </ion-avatar>
+      
+<div style="text-align: center">
+  <h1 >{{this.data.advokat.user.nama}}</h1>
+  <p>Beri Rating Advokat Anda</p>
+  <ionic4-star-rating #rating
+  activeIcon = "ios-star"
+  defaultIcon = "ios-star-outline"
+  activeColor = "#ffff00" 
+  defaultColor = "#999999"
+  readonly="false"
+  rating="3"
+  fontSize = "32px"
+  (ratingChanged)="logRatingChange($event)">
+  </ionic4-star-rating>
+</div>
+
+
+</ion-content>
+<ion-footer lines="none" transparent no-border>
+  <ion-row>
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+        <ion-button color="secondary" (click)="kirim()" shape="round" expand="full" style="font-size: 10pt;">KIRIM</ion-button>
+    </ion-col>
+    <ion-col size="2"></ion-col>
+  </ion-row>
+</ion-footer>
+
+

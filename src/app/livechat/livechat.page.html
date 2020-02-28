@@ -1,0 +1,127 @@
+<ion-header transparent no-border>
+    <ion-row>
+      <ion-col size="4">
+        <ion-buttons>
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col size="4" style="text-align: center;">
+        <p style="font-size:11pt !important;font-weight: bold;">
+          LIVE KONSULTASI
+        </p>
+      </ion-col>
+      <ion-col size="4">
+      </ion-col>
+    </ion-row>
+  </ion-header>
+  
+  <ion-content>
+      
+       
+   
+    <ion-grid *ngIf="this.advokatOnline3">
+      <ion-row justify-content-center align-items-center>
+        <div style="text-align: center;">
+  
+            <div >
+              <ion-item lines="none" *ngIf="this.advokatOnline3.advokat.length < 5">
+                <ion-avatar *ngFor="let item of this.advokatOnline3.advokat">
+                  <img src="{{item.user.foto}}" alt="">
+                </ion-avatar>
+              </ion-item>
+            </div>
+  
+            <div *ngIf="this.advokatOnline3.advokat.length != 0" >
+              <ion-item lines="none" *ngIf="this.advokatOnline3.advokat.length > 5">
+                <ion-avatar *ngFor="let item of this.advokatOnline3.advokat">
+                  <img src="{{item.user.foto}}" alt="">
+                </ion-avatar>
+                <ion-avatar >
+                  <img src="https://cdn4.iconfinder.com/data/icons/nintendo-switch-pack-1/64/ico-nsw-bttn-plus-512.png" alt="">
+                </ion-avatar>
+              </ion-item>
+              </div>
+          
+  
+        </div>
+      </ion-row>
+    </ion-grid>
+  
+    <div  *ngIf="this.advokatOnline">
+    <p style="text-align: center;font-size: 75%;color:#C8C8C8;"*ngIf="this.advokatOnline.length != 0">
+        {{this.advokatOnline.advokat.length}} Advokat online 
+      </p>
+      <p style="text-align: center;font-size: 75%;color:#C8C8C8;" *ngIf="this.advokatOnline.length == 0">
+          Tidak ada advokat online 
+        </p>
+      </div>
+  
+      <p style="text-align: center;font-size: 75%;color:#C8C8C8;" *ngIf="!this.advokatOnline">
+          Tidak ada advokat online
+        </p>
+        
+    <div *ngIf="this.advokatOnline != null">
+      <div *ngIf="this.advokatOnline.advokat.length != 0" >
+      <div *ngFor="let item of this.advokatOnline.advokat">
+        <div *ngIf="this.getDistanceFromLatLonInKm2(item) == this.advokatTerdekat"> 
+          <ion-row>
+            <ion-col size="2"></ion-col>
+            <ion-col size="8">
+              <ion-button color="secondary" (click)="profilAdvokat(item)" shape="round" expand="full" style="font-size: 10pt;">MULAI KONSUL</ion-button>
+                    </ion-col>
+                    <ion-col size="2"></ion-col>
+                  </ion-row>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div *ngIf="this.advokatOnline != null">
+              <div *ngIf="this.advokatOnline.advokat.length == 0" >
+           
+                  <ion-row>
+                    <ion-col size="2"></ion-col>
+                    <ion-col size="8">
+                      <ion-button color="secondary" (click)="advokat()" shape="round" expand="full" style="font-size: 10pt;">MULAI KONSUL</ion-button>
+                            </ion-col>
+                            <ion-col size="2"></ion-col>
+                          </ion-row>
+                
+                    </div>
+                  </div>
+         
+  
+      <p style="text-align: center;font-size: 75%;color:#C8C8C8;">
+          Terdekat
+        </p>
+  
+        <div *ngIf="this.advokatOnline">
+       
+            <ion-item (click)="profilAdvokat(item)" *ngFor="let item of this.advokatOnline.advokat">
+  
+                <ion-avatar slot="start">
+                  <img src="{{item.user.foto}}">
+                </ion-avatar>
+                <ion-label  > 
+                  <p style="font-weight: bolder;">{{item.user.nama}}</p>
+                  <h3 style="font-weight: bolder">
+                     <ion-text color="success" *ngIf="item.user.online == 1">Online</ion-text> 
+                      <ion-text color="danger" *ngIf="item.user.online == 0">Offline</ion-text>
+                  </h3>
+                  <p >{{item.spesialisasi}}</p>
+                  <p style="color:goldenrod">
+                    Chat Langsung {{item.biaya | currency:'Rp.':true:'1.2-2'}}
+                  </p>
+                </ion-label>
+                
+                <p style="font-weight: bolder;color:#1EBFCF;">
+                  {{this.getDistanceFromLatLonInKm2(item)}} Km
+                </p>
+            
+              </ion-item>
+              
+          
+            </div>
+              
+         
+  </ion-content>

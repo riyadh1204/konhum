@@ -1,0 +1,53 @@
+<ion-header transparent no-border>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+    <p style="font-size:11pt !important;font-weight: bold;">
+      Kontak Kami
+    </p>
+  </ion-buttons>
+</ion-header>
+
+<ion-content padding>
+  <img src="assets/unnamed.png">
+  <br>
+  <ion-item lines="none">
+    <h4 style="text-align: center;font-weight: bolder">YAYASAN BIRO KONSULTASI DAN BANTUAN HUKUM MITRA KELUARGA</h4>
+  </ion-item>
+  <br>
+  <ion-item lines="none">
+    <ion-label>
+      <p style="text-align: center">Komp. Bukit Permata Cinunuk E
+      </p>
+      <p style="text-align: center"> No.12 RT.003 RW.016 Cinunuk, Cileunyi</p>
+      <p style="text-align: center"> Kab. Bandung Jawa Barat</p>
+    </ion-label>
+  </ion-item>
+  <br>
+<div style="text-align: center">
+ 
+    <ion-button (click)="copyWeb()" fill="outline" color="primary">
+      <ion-icon name="globe"></ion-icon> Konsulhukum.id
+    </ion-button>
+  
+<br>
+      <ion-button (click)="copyTel()" fill="outline" color="primary">
+        <ion-icon name="call"></ion-icon> Riyan Ramdani,S,SY,M,H.
+      </ion-button>
+   
+  </div>
+    
+    <!-- <ion-list>
+      <ion-item  text-wrap *ngFor="let item of this.kontak">
+        <ion-thumbnail slot="start">
+            <img src="{{item.foto}}" alt="">
+          </ion-thumbnail>
+        <ion-label>
+            {{item.alamat}}
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="copy(item)">
+            <ion-icon style="color:cyan" name="copy"></ion-icon>
+          </ion-button>
+      </ion-item>
+    </ion-list> -->
+
+</ion-content>

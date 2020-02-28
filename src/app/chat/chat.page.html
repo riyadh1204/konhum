@@ -1,0 +1,82 @@
+<ion-header transparent no-border>
+    <ion-item text-center lines="none">
+        <ion-label><p style="font-weight: bolder">KONSULTASI</p></ion-label>
+      </ion-item>
+  </ion-header>
+
+<ion-content>
+    <ion-list *ngIf="this.dataChat">
+        <ion-item (click)="chatmsg(item)" *ngFor="let item of this.dataChat" lines="none">
+            <ion-avatar slot="start">
+                <img src="{{item.advokat.user.foto}}" alt="">   
+            </ion-avatar>
+            <ion-label slot="start">
+                <h3 style="font-weight: bolder">
+                    {{item.advokat.user.nama}} <ion-text color="success" *ngIf="item.advokat.user.online == 1">Online</ion-text> 
+                    <ion-text color="danger" *ngIf="item.advokat.user.online == 0">Offline</ion-text>
+                  </h3>
+                  <div *ngIf="lastMsg != undefined">
+                    <p *ngIf="lastMsg.user_id != item.user.id"  >
+                      {{lastMsg.message}}
+                    </p>
+                    <p *ngIf="lastMsg.user_id == item.user.id"  >
+                        <ion-text style="font-weight: 700"> Anda : </ion-text> {{lastMsg.message}}
+                      </p>
+                    </div>
+                </ion-label>
+                <ion-label slot="end" style="font-size:75% " *ngIf="lastMsg != undefined">
+                  {{lastMsg.created_at | date:'hh:mm' }}
+                </ion-label>
+        </ion-item>
+    
+    </ion-list>
+     
+
+
+      <ion-list *ngIf="!this.dataChat">
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+               <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+               <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+               <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+               <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+               <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+               <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+               <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+               <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+               <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        
+<ion-row>
+  <ion-col size="2"></ion-col>
+  <ion-col size="8">
+      <ion-button color="secondary" (click)="livechat()" shape="round" expand="full" style="font-size: 10pt;">MULAI KONSUL</ion-button>
+  </ion-col>
+  <ion-col size="2"></ion-col>
+</ion-row>
+  
+
+</ion-content>
+
+
+
+

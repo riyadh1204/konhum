@@ -1,0 +1,227 @@
+<ion-header transparent no-border>
+  <ion-row>
+    <ion-col size="4">
+      <ion-buttons>
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-col>
+    <ion-col size="4" style="text-align: center;">
+      <p style="font-size:11pt !important;font-weight: bold;">
+        Ubah Data Diri
+      </p>
+    </ion-col>
+    <ion-col size="4">
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-avatar *ngIf="this.gambar == null">
+    <ion-skeleton-text animated></ion-skeleton-text>
+  </ion-avatar>
+
+
+    <div class="ion-item" *ngIf="this.gambar != null">
+        <ion-avatar class="ion-avatar"   (click)="selectImage()">
+            <img src="{{this.gambar}}">
+        <div>
+        <ion-button fill="clear"  class="buttonCustom" color="secondary" style="color: white !important;">
+          <div class="ion-icon">
+              <ion-icon name="camera"></ion-icon>
+          </div>              
+        </ion-button>
+      </div>
+      </ion-avatar>
+      </div>
+
+      
+
+ <br>
+ 
+
+
+
+ 
+
+
+
+  <form [formGroup]="registerForm">
+    <div *ngIf="this.ubahStatus == false">
+
+      <div *ngIf="!this.data">
+
+
+        <ion-list>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-list>
+        <ion-list>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-list>
+        <ion-list>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-list>
+        <ion-list>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-list>
+        <ion-list>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-list>
+
+      </div>
+
+
+      <ion-list *ngIf="this.data">
+        <ion-item>
+          <ion-label position="floating">Nama</ion-label>
+          <ion-input formControlName="nama" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Nomor Telepon</ion-label>
+          <ion-input formControlName="no_telepon" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Jenis Kelamin</ion-label>
+          <ion-input formControlName="jenis_kelamin" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Tanggal Lahir</ion-label>
+            <ion-datetime formControlName="tanggal_lahir" displayFormat="D MMM YYYY" readonly ></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Alamat</ion-label>
+          <ion-input formControlName="alamat" readonly></ion-input>
+        </ion-item>
+      </ion-list>
+      <br>
+      <div style="text-align: center">
+        <ion-button (click)="ubah()" shape="round" color="secondary" style="text-transform: none;">Ubah Data Diri
+        </ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="this.ubahStatus == true">
+      <ion-list>
+
+        <ion-row>
+          <ion-col size="8">
+            <ion-item>
+              <ion-label position="floating">Nama</ion-label>
+              <ion-input formControlName="nama"></ion-input>
+
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-button *ngIf="nama.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:red" name="close"></ion-icon>
+              </ion-button>
+              <ion-button *ngIf="!nama.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:turquoise" name="checkmark"></ion-icon>
+              </ion-button>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="8">
+            <ion-item>
+              <ion-label position="floating">Nomor Telepon</ion-label>
+              <ion-input formControlName="no_telepon"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-button *ngIf="no_telepon.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:red" name="close"></ion-icon>
+              </ion-button>
+              <ion-button *ngIf="!no_telepon.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:turquoise" name="checkmark"></ion-icon>
+              </ion-button>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+
+
+
+        <ion-row>
+          <ion-col size="8">
+            <ion-item>
+              <ion-label position="floating">Jenis Kelamin</ion-label>
+              <ion-select formControlName="jenis_kelamin">
+                <ion-select-option value="perempuan">Perempuan</ion-select-option>
+                <ion-select-option value="laki-laki">Laki-Laki</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-button *ngIf="jenis_kelamin.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:red" name="close"></ion-icon>
+              </ion-button>
+              <ion-button *ngIf="!jenis_kelamin.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:turquoise" name="checkmark"></ion-icon>
+              </ion-button>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="8">
+            <ion-item>
+                   <ion-label position="floating">Tanggal Lahir</ion-label>
+                  <ion-datetime formControlName="tanggal_lahir" displayFormat="D MMM YYYY" ></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-button *ngIf="tanggal_lahir.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:red" name="close"></ion-icon>
+              </ion-button>
+              <ion-button *ngIf="!tanggal_lahir.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:turquoise" name="checkmark"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col size="8">
+            <ion-item>
+              <ion-label position="floating">Alamat</ion-label>
+              <ion-textarea formControlName="alamat"></ion-textarea>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-button *ngIf="alamat.hasError('required')"  fill="clear" slot="end">
+                <ion-icon style="color:red" name="close"></ion-icon>
+              </ion-button>
+              <ion-button *ngIf="!alamat.hasError('required') "  fill="clear" slot="end">
+                <ion-icon style="color:turquoise" name="checkmark"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+      <br>
+      <div style="text-align: center">
+        <ion-button (click)="simpan()" shape="round" color="secondary" style="text-transform: none;">Simpan Data Diri
+        </ion-button>
+      </div>
+    </div>
+  </form>
+</ion-content>

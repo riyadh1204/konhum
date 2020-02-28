@@ -1,0 +1,39 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Beranda</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="chat">
+      <ion-icon name="chatboxes"></ion-icon>
+      <ion-label>Chat</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="advokat">
+   
+    </ion-tab-button>
+
+    <ion-tab-button tab="artikel">
+      <ion-icon name="list-box"></ion-icon>
+      <ion-label>Article</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>
+
+<ion-fab vertical="bottom" horizontal="center" slot="fixed" >
+    <ion-fab-button (click)="this.clickTabButton()" color="secondary">
+      <ion-icon name="person"></ion-icon>
+    </ion-fab-button>
+    <div style="font-weight: lighter">
+      Advokat
+    </div>
+</ion-fab>
+

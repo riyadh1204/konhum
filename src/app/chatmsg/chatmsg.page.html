@@ -1,0 +1,73 @@
+<ion-header >
+    <ion-toolbar class="header">
+  
+            
+                <ion-buttons slot="start">
+                    <ion-back-button ></ion-back-button>
+                  </ion-buttons>
+            
+        
+                <ion-item lines="none" class="header" slot="start">
+  
+                    <ion-avatar slot="start">
+                      <img src="{{this.data.advokat.user.foto}}">
+                    </ion-avatar>
+                    <ion-label>
+                      <h2>{{ this.data.advokat.user.nama}}</h2>
+                      <p *ngIf="this.data.advokat.user.online == 1">Online</p>
+                      <p *ngIf="this.data.advokat.user.online == 0">Offline</p>
+                      </ion-label>
+                  </ion-item>
+         
+                  <ion-buttons slot="end">
+                    <ion-button (click)="presentAlertConfirm()" shape="round" class="button2">
+                        <ion-icon name="checkmark"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                   
+        </ion-toolbar>
+    </ion-header>
+    
+  
+    <ion-content class="page">
+      <div style="text-align: center" *ngIf="!messages">
+        <br>
+        <br>
+        <br>
+          <ion-spinner name="crescent"></ion-spinner>
+      </div>
+        <ion-grid *ngIf="messages">
+          <ion-row *ngFor="let message of messages">
+         
+            <ion-col size="9" *ngIf="message.user_id !== currentUser" class="message other-message">
+              <b>{{ this.data.advokat.user.nama }}</b><br>
+              <span>{{ message.message }}</span>
+              <div class="time" text-right><br>{{ message.created_at | date:'shortTime' }}</div>
+            </ion-col>
+            
+            <ion-col offset="3" size="9" *ngIf="message.user_id === currentUser" class="message my-message">
+              <b>{{ this.data.user.nama }}</b><br>
+              <span>{{ message.message }}</span>
+              <div class="time" text-right><br>{{ message.created_at | date:'shortTime' }}</div>
+            </ion-col>
+            
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+  
+      <ion-footer>
+          <ion-toolbar color="light">
+            <ion-row no-padding align-items-center>
+              <ion-col size="10">
+                <textarea autosize class="message-input" maxRows="4" [(ngModel)]="newMsg"></textarea>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="msg-btn"
+                  (click)="postData()">
+                  <ion-icon name="ios-send" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-toolbar>
+        </ion-footer>
+  

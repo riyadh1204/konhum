@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+</ion-header>
+
+<ion-content #content>
+ <div>
+   <img src="{{this.data.artikel}}" style="width: 100%; height: 100%;" alt="">
+ </div>
+
+ <div padding>
+  <ion-label>
+    <h2 style="font-weight: bolder">{{this.data.judul}}</h2>
+    <p>{{this.data.updated_at | date:'short' }}</p>
+  </ion-label>
+  <ion-item>
+    <p>
+      {{this.data.isi}}
+    </p>
+  </ion-item>
+<ion-row>
+  <ion-col size="2">
+      <ion-button  fill="clear" style="font-size:125%;"  *ngIf="this.load == true" >
+          <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+      </ion-button>
+<div *ngIf="this.load == false">
+  <ion-button  fill="clear" style="color: black;font-size:125%;" (click)="like()"  *ngIf="this.suka == false" >
+      <ion-icon name="heart-empty"></ion-icon>
+  </ion-button>
+
+  <ion-button  fill="clear"  (click)="unlike()" style="font-size:125%;" *ngIf="this.suka == true">
+      <ion-icon name="heart" style="color: red;"></ion-icon>
+  </ion-button>
+</div>
+  </ion-col>
+  <ion-col >
+    <ion-item style="font-size:85%;" lines="none">
+      <p *ngIf="this.suka == false">{{this.likes}} orang menyukai artikel ini.</p>
+      
+      <div *ngIf="this.suka == true">
+        <p  *ngIf="this.likes == '0'"> Anda menyukai artikel ini.</p>
+        <p  *ngIf="this.likes == '1'"> Anda menyukai artikel ini.</p>
+        <div *ngIf="this.likes != '1'">
+            <p *ngIf="this.likes != '0'"> Anda dan {{this.likes}} orang lain menyukai artikel ini.</p>
+        </div>
+      </div>
+    </ion-item>
+    </ion-col>
+</ion-row>
+    <div *ngIf ="!this.dataKomen" style="text-align: center;">
+        <ion-spinner name="crescent"></ion-spinner>
+    </div>
+   <div *ngIf ="this.dataKomen">
+      <ion-item *ngFor="let item of this.dataKomen.komen" lines="none">
+      
+          <ion-avatar slot="start" *ngIf="item.user.foto == null"> 
+                  <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+
+            <ion-avatar slot="start" *ngIf="item.user.foto != null">
+                    <img src="{{item.user.foto}}" alt="">
+              </ion-avatar>
+
+            <p ><b>{{item.user.nama}}</b>  {{item.isi}}</p>
+
+     
+              <ion-button  fill="clear" slot="end" [disabled]="disabled"  (click)="presentAlertConfirm(item)" style="font-size:100%;" *ngIf="item.user.nama == this.nama" >
+                <ion-icon name="trash" style="color: black;" *ngIf ="this.loadDel == false"></ion-icon>
+                <ion-spinner slot="end" style="color: black;" name="crescent" *ngIf ="this.loadDel == true" ></ion-spinner>
+            </ion-button>
+
+
+      </ion-item>
+   </div>
+
+
+ 
+</div>
+</ion-content>
+<ion-footer>
+    <ion-item >
+
+        <ion-avatar slot="start" *ngIf="this.gambar">
+            <img src="{{this.gambar}}" alt="">
+          </ion-avatar>
+
+          
+        <ion-avatar slot="start" *ngIf="this.gambar == null">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+
+        
+      
+            <ion-textarea placeholder="Ketik komentar..." [(ngModel)]="this.isi"></ion-textarea>
+     
+          <ion-button (click)="this.komenPost()" slot="end" fill="clear" style="text-transform: none;">Kirim</ion-button>
+    </ion-item>
+</ion-footer>

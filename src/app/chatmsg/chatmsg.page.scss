@@ -1,0 +1,88 @@
+.header {
+    --background:#1EBFCF;
+}
+.page{
+  --ion-background-color:rgb(240, 234, 234);
+}
+.message {
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+  }
+   
+  .my-message {
+    background:var(--ion-color-secondary);
+    color: #ffffff;
+  }
+   
+  .other-message {
+    background: #ffffff;
+    color: #000000;
+  }
+   
+  .time {
+    color: #dfdfdf;
+    float: right;
+    font-size: small;
+  }
+  .button2{
+    --background:linear-gradient(to right, #80deea , #4dd0e1,#26c6da,#00bcd4,#00acc1,#0097a7);
+}
+  .message-input {
+    width: 100%;
+    border: 1px solid var(--ion-color-medium);
+    border-radius: 10px;
+    background: #fff;
+    resize: none;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+   
+  .msg-btn {
+    --padding-start: 0.5em;
+    --padding-end: 0.5em;
+  }
+
+.image-center{
+    margin:0 auto;
+    }
+  
+
+    .ion-item{
+      position: relative;
+      height: 40px;
+      width: 40px;
+     
+    }
+    
+    .ion-avatar{
+      border-radius: 50%;
+      height: 100%;
+      width: 100%;
+     
+    }
+    
+    .buttonCustom{
+      position: absolute;
+      right: 0px;
+      bottom: -2px;
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background-color: #6EFF00;
+      box-shadow: 0 0 4px 3px #ccc;
+      color: white;
+    }
+
+    .buttonCustom2{
+        position: absolute;
+        right: 0px;
+        bottom: -2px;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background-color: #E5E5E5;
+        box-shadow: 0 0 4px 3px #ccc;
+        color: white;
+      }
